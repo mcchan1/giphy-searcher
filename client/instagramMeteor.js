@@ -16,18 +16,25 @@ Template.instafeed.helpers({
 		return "some bullshit headline"
 	},
 
-	'loadPictures': function () {
-		console.log ('qoo test');
-		var feed = new Instafeed({
-        get: 'popular',
-        tagName: 'awesome',
-        clientId: 	'a2df9087998b4356b28162781ccd2da1',
-        template: '<a class="instafeed" href="{{link}}"><img src="{{image}}" /></a>'
-    });
-    feed.run();
+	'loadPictures' : function () {
+	var tag = 'qoobear';//input.val(); //assign the input value to 'tag'
 
-	}
+	var api_key = '1634185146.5b9e1e6.ebf4b224796843379782a86ea0664c24'
 
-});
+	var url = 'https://api.instagram.com/v1/tags/'+ tag +'/media/recent?access_token='+api_key
+
+	$.ajax({
+		type: "GET",
+		dataType: "jsonp",
+		cache: false,
+		url: url,
+	 	success: console.log('instagram'),
+		
+	}); //ajax call 
+
+	} //load pictures
+
+}); //end of helpers
 	
-}
+} //end of isClient
+

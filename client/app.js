@@ -1,13 +1,13 @@
-Photographs = new Mongo.Collection('photographs');
+
 
 if (Meteor .isClient){
-
+console.log('client is working');
 
 Template.hashtag.events({
 	"submit .hashtagSearch": function (event) {
 		event.preventDefault();
 
-		// var input = event.target.text.value;
+		//var input = event.target.text.value;
 
 		// $('#submit').click(function() {
 		// 	loadPictures();

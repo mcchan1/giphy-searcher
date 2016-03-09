@@ -13,7 +13,7 @@ Template.hashtag.events({
 		// 	loadPictures();
 		// })
 		Meteor.call('searchInstagram',function(error, results) {
-			console.log(results.content); //results shoudl be json obj.
+			console.log("insta photo loaded");//); //results shoudl be json obj.
 		});
 	}
 })

@@ -19,11 +19,14 @@ if(Meteor.isServer){
 			  	photos = data.data;
 			    
 			    console.log(photos)
+			   
+
+			    	Photographs.insert(photos);
+				
 			  }
 			});
 		}, 
 		//1634185146.a2df908.f0a32764c5eb4351a09b94b3df3d0e8d ---not working
-	// loadPictures : function () {
 	
 	// var tag = 'qoobear'//input.val(); //assign the input value to 'tag'
 

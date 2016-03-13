@@ -1,6 +1,12 @@
 if(Meteor.isServer){
 	console.log('hello server');
 
+	Meteor.startup(function(){
+		console.log("startup da function");
+		var Instafeed;
+
+	});
+
 	Meteor.methods({
 		searchInstagram: function () {
 			console.log('checking..');
@@ -16,16 +22,36 @@ if(Meteor.isServer){
 			    console.log( error );
 			  } 
 			  else {
-			  	photos = data.data;
+			  	// photos = data.data;
 			    
-			    console.log(photos)
 			   
+			      
+			    photos = Photographs.find({},{"data.images.low_resolution.url":1,});
+			    //photographs.find({},{"data.images.low_resolution.url":1,
+			    //"data.caption.text":1,"_id":0}).pretty();
 
-			    	Photographs.insert(photos);
-				
+
+				console.log(photos);
+
+
+			    //Photographs.insert(photos);
+
+				//
 			  }
 			});
-		}, 
+		},
+
+	// Meteor.methods({
+	// 	'Instafeed': function() {
+	// 		console.log('fetchImages');
+	// 		   var feed = new Instafeed({
+	//         get: 'popular',
+	//         tagName: 'awesome',
+	//         accessToken: '1634185146.1677ed0.d05110c153ab4f86b27f2e99d58a3f3c',
+	//         template: '<a class="animation" href="{{link}}"><img src="{{image}}" /></a>'
+	//     });
+	//     feed.run();
+	// 	},		
 		//1634185146.a2df908.f0a32764c5eb4351a09b94b3df3d0e8d ---not working
 	
 	// var tag = 'qoobear'//input.val(); //assign the input value to 'tag'

@@ -23,12 +23,14 @@ Template.hashtag.events({
 Template.instafeed.helpers({
 	'headline': function () {
 		return "some  helper Template"
+	}, 
 
+	'loadPictures': function () {
+		//console.log( Photographs.find({_id:"LKJJ22a3cojbdH5ux"}).fetch());
+		return Photographs.find({}, {"data.caption.text":1,});
 	}
-
 
 //
 }); //end of helpers
 	
 } //end of isClient
-

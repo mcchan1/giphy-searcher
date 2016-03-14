@@ -2,14 +2,18 @@ if(Meteor.isServer){
 	console.log('hello server');
 
 	Meteor.startup(function(){
-		console.log("startup da function");
-		var Instafeed;
+		console.log("startup server function");
 
 	});
 
+	Meteor.publish('Photographs', function() {
+		console.log('publication ready');
+		return Photographs.find({},{fields: {"data.caption.text":1,"data.images.low_resolution.url":1} })
+	})
+
 	Meteor.methods({
 		searchInstagram: function () {
-			console.log('checking..');
+			console.log('checking instagram..');
 			tag = 'qoobear';
 			HTTP.call( 'GET', 'https://api.instagram.com/v1/tags/'+tag+'/media/recent?access_token=1634185146.1677ed0.d05110c153ab4f86b27f2e99d58a3f3c', {
 				params: {
@@ -22,19 +26,14 @@ if(Meteor.isServer){
 			    console.log( error );
 			  } 
 			  else {
-			  	// photos = data.data;
+			  	photos = data.data;
 			    
-			   
-			      
-			    photos = Photographs.find({},{"data.images.low_resolution.url":1,});
+			     
+			    //photos = Photographs.find({},{"data.images.low_resolution.url":1,});
 			    //photographs.find({},{"data.images.low_resolution.url":1,
 			    //"data.caption.text":1,"_id":0}).pretty();
 
-
-				console.log(photos);
-
-
-			    //Photographs.insert(photos);
+			    Photographs.insert(photos);
 
 				//
 			  }

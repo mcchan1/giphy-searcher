@@ -27,10 +27,10 @@ Template.instafeed.helpers({
 
 	'loadPictures': function () {
 		//console.log( Photographs.find({_id:"LKJJ22a3cojbdH5ux"}).fetch());
-		return Photographs.find({}, {"data.caption.text":1,});
+		return 
 	}
 
 //
 }); //end of helpers
-	
+Meteor.subscribe('Photographs');	
 } //end of isClient

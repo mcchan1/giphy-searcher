@@ -26,8 +26,8 @@ Template.instafeed.helpers({
 	}, 
 
 	'loadPictures': function () {
-		//console.log( Photographs.find({_id:"LKJJ22a3cojbdH5ux"}).fetch());
-		return 
+		var caption = find({},{fields: {"data.caption.text":1} });
+		console.log(caption); 
 	}
 
 //

@@ -22,15 +22,16 @@ Template.hashtag.events({
 //could also put into onwn javascript file e.g. instafeed.js 
 Template.instafeed.helpers({
 	'headline': function () {
-		return "some  helper Template"
+		return "test headline helper function Template"
 	}, 
 
 	'loadPictures': function () {
-		var caption = find({},{fields: {"data.caption.text":1} });
-		console.log(caption); 
-	}
+
+		var caption= Photographs.find({},{fields: {"data.caption.text":1, "data.images.low_resolution.url":1} });
+		return caption;
+	}	
 
 //
 }); //end of helpers
-Meteor.subscribe('Photographs');	
+	Meteor.subscribe('instafeed');	
 } //end of isClient

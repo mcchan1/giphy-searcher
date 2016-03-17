@@ -8,17 +8,28 @@
 	{{#each loadPictures}}
 	<p>caption : )</p>
 	
+	<!-- LOAD ALL DATA FROM SUBSCRIPTION  -->
 	{{#each data }}
-
-
+		<!-- LOAD CAPTIONS "data.caption.text" -->
 		{{ #with caption }}
 
 			{{ text }}
 
 		{{/with}}
 
-	{{/each}}
-{{/each}}
+		<!-- LOAD IMAGES "data.images.low_resolution.url" -->
+		{{#with images}}
+			{{#with low_resolution}}
+
+			<img src="{{ url }}">
+				
+
+			{{/with}}
+
+		{{/with}}
+
+	{{/each}}   <!--DATA LOOP END-->
+{{/each}}  
 </div>
 
 </template>

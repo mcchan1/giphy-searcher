@@ -22,13 +22,13 @@ Template.hashtag.events({
 //could also put into onwn javascript file e.g. instafeed.js 
 Template.instafeed.helpers({
 	'headline': function () {
-		return "test headline helper function Template"
+		return "Instagram Test Template"
 	}, 
 
 	'loadPictures': function () {
 
-		var caption= Photographs.find({},{fields: {"data.caption.text":1, "data.images.low_resolution.url":1} });
-		return caption;
+		return Photographs.find({},{fields: {
+			"data.caption.text":1, "data.images.low_resolution.url":1} });	
 	}	
 
 //

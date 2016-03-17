@@ -21,7 +21,7 @@ if(Meteor.isServer){
 			HTTP.call( 'GET', 'https://api.instagram.com/v1/tags/'+tag+'/media/recent?access_token=1634185146.1677ed0.d05110c153ab4f86b27f2e99d58a3f3c', {
 				params: {
 					  	
-				  'count': 1,
+				  'count': 2,
 				}
 			}, function( error, data ) {
 

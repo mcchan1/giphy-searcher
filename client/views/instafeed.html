@@ -6,10 +6,19 @@
 <div class = "instagramPhoto" id = 'instafeed'>
 
 	{{#each loadPictures}}
-	<p>another caption : )</p>
-	<p>{{ data }}</p>
-	{{/each}}
+	<p>caption : )</p>
+	
+	{{#each data }}
 
+
+		{{ #with caption }}
+
+			{{ text }}
+
+		{{/with}}
+
+	{{/each}}
+{{/each}}
 </div>
 
 </template>

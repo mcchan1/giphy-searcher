@@ -33,5 +33,7 @@ Template.instafeed.helpers({
 
 //
 }); //end of helpers
-	Meteor.subscribe('instafeed');	
+	Meteor.subscribe('instafeed', function() {
+		console.log(Photographs.find().count());
+	});	
 } //end of isClient

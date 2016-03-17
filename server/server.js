@@ -10,7 +10,8 @@ if(Meteor.isServer){
 		//wait 2s before loading data
 		Meteor._sleepForMs(2000);
 		console.log('publication ready');
-		return Photographs.find({},{fields: {"data.caption.text":1,"data.images.low_resolution.url":1} })
+		return Photographs.find({},{fields: {"data.caption.text":1,"data.images.low_resolution.url":1} });
+		
 	})
 
 	Meteor.methods({

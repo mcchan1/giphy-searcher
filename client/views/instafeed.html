@@ -5,6 +5,7 @@
 
 <div class = "instagramPhoto" id = 'instafeed'>
 
+<!--CALL loadPicture function from app.js-->
 	{{#each loadPictures}}
 	<p>caption : )</p>
 	
@@ -13,7 +14,7 @@
 		<!-- LOAD CAPTIONS "data.caption.text" -->
 		{{ #with caption }}
 
-			{{ text }}
+			<p>{{ text }}</p>
 
 		{{/with}}
 
@@ -29,7 +30,7 @@
 		{{/with}}
 
 	{{/each}}   <!--DATA LOOP END-->
-{{/each}}  
+{{/each}}  <!--loadPicture function loop END-->
 </div>
 
 </template>

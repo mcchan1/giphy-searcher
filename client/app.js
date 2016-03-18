@@ -4,8 +4,12 @@ if (Meteor .isClient){
 console.log('client is working');
 
 Template.hashtag.events({
-	"submit .hashtagSearch": function (event) {
+	"submit form": function (event) {
 		event.preventDefault();
+
+		var hashtagIdVar = event.target.hashtagId.value;
+
+		console.log(hashtagIdVar);
 
 		//var input = event.target.text.value;
 
@@ -34,6 +38,7 @@ Template.instafeed.helpers({
 //
 }); //end of helpers
 	Meteor.subscribe('instafeed', function() {
+		//count number of photographs in Publication 'instafeed'
 		console.log(Photographs.find().count());
 	});	
 } //end of isClient

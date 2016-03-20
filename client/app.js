@@ -6,16 +6,14 @@ console.log('client is working');
 Template.hashtag.events({
 	"submit form": function (event) {
 		event.preventDefault();
-
+		//get value from input field in hashtag template
 		var hashtagIdVar = event.target.hashtagId.value;
 
 		console.log(hashtagIdVar);
+		//put hashtagIdVar into Collection
+		//Hashtag.insert({Hashtag: hashtagIdVar});
+		Meteor.call('insertHashtagData', hashtagIdVar);
 
-		//var input = event.target.text.value;
-
-		// $('#submit').click(function() {
-		// 	loadPictures();
-		// })
 		Meteor.call('searchInstagram',function(error, results) {
 			console.log("insta photo loaded");//); //results shoudl be json obj.
 		});
@@ -37,8 +35,16 @@ Template.instafeed.helpers({
 
 //
 }); //end of helpers
+
+	//SUBSCRIPTIONS 
 	Meteor.subscribe('instafeed', function() {
 		//count number of photographs in Publication 'instafeed'
-		console.log(Photographs.find().count());
+		console.log("photograph count:" + Photographs.find().count());
 	});	
+
+	Meteor.subscribe('hashtag', function (){
+		console.log("hashtag searches count:" + Hashtag.find().count())
+	});
+
+
 } //end of isClient

@@ -1,5 +1,6 @@
 if(Meteor.isServer){
-	console.log('hello server');
+	//server is awake
+	console.log('server is awake');
 
 	Meteor.startup(function(){
 		console.log("startup server function");
@@ -10,15 +11,23 @@ if(Meteor.isServer){
 		//wait 2s before loading data
 		Meteor._sleepForMs(2000);
 		console.log('publication ready');
+		//only two fields from Photographs Collection for publication -'text' and 'url'
 		return Photographs.find({},{fields: {"data.caption.text":1,"data.images.low_resolution.url":1} });
 		
+	});
+	Meteor.publish('hashtag', function getHashtag() {
+			return Hashtag.find({},{sort: { Hashtag:-1 } });
+			console.log('hashtag publication');
 	})
 
 	Meteor.methods({
-		searchInstagram: function () {
+		//search instagram, using http-request package 
+		searchInstagram: function (hashtagIdVar) {
 			console.log('checking instagram..');
-			tag = 'qoobear';
-			HTTP.call( 'GET', 'https://api.instagram.com/v1/tags/'+tag+'/media/recent?access_token=1634185146.1677ed0.d05110c153ab4f86b27f2e99d58a3f3c', {
+			//console.log(hashtagIdVar[0]); --return value from collection store as var
+
+			//tag = 'qoobear';
+			HTTP.call( 'GET', 'https://api.instagram.com/v1/tags/'+hashtagIdVar+'/media/recent?access_token=1634185146.1677ed0.d05110c153ab4f86b27f2e99d58a3f3c', {
 				params: {
 					  	
 				  'count': 2,
@@ -31,36 +40,20 @@ if(Meteor.isServer){
 			  else {
 			  	photos = data.data;
 			    
-			     
-			    //photos = Photographs.find({},{"data.images.low_resolution.url":1,});
-			    //photographs.find({},{"data.images.low_resolution.url":1,
+			    //NOTE: MongoDB command
+			    //db.photographs.find({},{"data.images.low_resolution.url":1,
 			    //"data.caption.text":1,"_id":0}).pretty();
 
+					//Insert all data into Photographs Collection. 
 			    Photographs.insert(photos);
+			  } //else 
+			}); //http call 
+		}, //searchInstagram 
 
-				//
-			  }
+		'insertHashtagData': function(hashtagIdVar) {
+			Hashtag.insert({Hashtag: hashtagIdVar
 			});
-		},
-
-	// Meteor.methods({
-	// 	'Instafeed': function() {
-	// 		console.log('fetchImages');
-	// 		   var feed = new Instafeed({
-	//         get: 'popular',
-	//         tagName: 'awesome',
-	//         accessToken: '1634185146.1677ed0.d05110c153ab4f86b27f2e99d58a3f3c',
-	//         template: '<a class="animation" href="{{link}}"><img src="{{image}}" /></a>'
-	//     });
-	//     feed.run();
-	// 	},		
-		//1634185146.a2df908.f0a32764c5eb4351a09b94b3df3d0e8d ---not working
-	
-	// var tag = 'qoobear'//input.val(); //assign the input value to 'tag'
-
-	// var api_key = '1634185146.5b9e1e6.ebf4b224796843379782a86ea0664c24'
-
-	// var url = 'https://api.instagram.com/v1/tags/'+ tag +'/media/recent?access_token='+api_key
-
+		} //insertHashtagData
 	}); //methods
-}
+
+} //ifServer

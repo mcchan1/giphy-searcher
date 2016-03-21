@@ -2,21 +2,25 @@
 
 if (Meteor .isClient){
 console.log('client is working');
+Session.setDefault("hashtagId","");
 
 Template.hashtag.events({
 	"submit form": function (event) {
 		event.preventDefault();
 		//get value from input field in hashtag template
 		var hashtagIdVar = event.target.hashtagId.value;
+		Session.set('hashtagId',hashtagIdVar);
 
 		console.log(hashtagIdVar);
 		//put hashtagIdVar into Collection
 		//Hashtag.insert({Hashtag: hashtagIdVar});
 		Meteor.call('insertHashtagData', hashtagIdVar);
 
-		Meteor.call('searchInstagram',function(error, results) {
+		Meteor.call('searchInstagram', hashtagIdVar, function(error, results) {
 			console.log("insta photo loaded");//); //results shoudl be json obj.
 		});
+
+		return false; //prevent the form reload
 	}
 })
 

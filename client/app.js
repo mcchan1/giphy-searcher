@@ -29,7 +29,7 @@ Template.hashtag.events({
 //could also put into onwn javascript file e.g. instafeed.js 
 Template.instafeed.helpers({
 	'headline': function () {
-		return ('headlline');
+		return Session.get('hashtagId');
 	}, 
 
 	'loadPictures': function () {

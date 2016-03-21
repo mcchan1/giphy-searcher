@@ -16,8 +16,12 @@ if(Meteor.isServer){
 		
 	});
 	Meteor.publish('hashtag', function getHashtag() {
-			return Hashtag.find({},{sort: { Hashtag:-1 } });
 			console.log('hashtag publication');
+			// MAKE THIS RETURN A VAR?  SO searchInstagram() could get this value?
+			return Hashtag.find({},{sort: { Hashtag:-1 } });
+			
+			
+			
 	})
 
 	Meteor.methods({

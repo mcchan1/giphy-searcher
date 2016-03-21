@@ -15,14 +15,14 @@ if(Meteor.isServer){
 		return Photographs.find({},{fields: {"data.caption.text":1,"data.images.low_resolution.url":1} });
 		
 	});
-	Meteor.publish('hashtag', function getHashtag() {
-			console.log('hashtag publication');
-			// MAKE THIS RETURN A VAR?  SO searchInstagram() could get this value?
-			return Hashtag.find({},{sort: { Hashtag:-1 } });
+	// Meteor.publish('hashtag', function getHashtag() {
+	// 		console.log('hashtag publication');
+	// 		// MAKE THIS RETURN A VAR?  SO searchInstagram() could get this value?
+	// 		return Hashtag.find({},{sort: { Hashtag:-1 } });
 			
 			
 			
-	})
+	// })
 
 	Meteor.methods({
 		//search instagram, using http-request package 
@@ -54,10 +54,10 @@ if(Meteor.isServer){
 			}); //http call 
 		}, //searchInstagram 
 
-		'insertHashtagData': function(hashtagIdVar) {
-			Hashtag.insert({Hashtag: hashtagIdVar
-			});
-		} //insertHashtagData
+		// 'insertHashtagData': function(hashtagIdVar) {
+		// 	Hashtag.insert({Hashtag: hashtagIdVar
+		// 	});
+		// } //insertHashtagData
 	}); //methods
 
 } //ifServer

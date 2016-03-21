@@ -9,12 +9,13 @@ Template.hashtag.events({
 		event.preventDefault();
 		//get value from input field in hashtag template
 		var hashtagIdVar = event.target.hashtagId.value;
+		
 		Session.set('hashtagId',hashtagIdVar);
 
 		console.log(hashtagIdVar);
 		//put hashtagIdVar into Collection
 		//Hashtag.insert({Hashtag: hashtagIdVar});
-		Meteor.call('insertHashtagData', hashtagIdVar);
+		//Meteor.call('insertHashtagData', hashtagIdVar);
 
 		Meteor.call('searchInstagram', hashtagIdVar, function(error, results) {
 			console.log("insta photo loaded");//); //results shoudl be json obj.
@@ -28,7 +29,7 @@ Template.hashtag.events({
 //could also put into onwn javascript file e.g. instafeed.js 
 Template.instafeed.helpers({
 	'headline': function () {
-		return "Instagram Test Template"
+		return ('headlline');
 	}, 
 
 	'loadPictures': function () {
@@ -46,9 +47,9 @@ Template.instafeed.helpers({
 		console.log("photograph count:" + Photographs.find().count());
 	});	
 
-	Meteor.subscribe('hashtag', function (){
-		console.log("hashtag searches count:" + Hashtag.find().count())
-	});
+	// Meteor.subscribe('hashtag', function (){
+	// 	console.log("hashtag searches count:" + Hashtag.find().count())
+	// });
 
 
 } //end of isClient

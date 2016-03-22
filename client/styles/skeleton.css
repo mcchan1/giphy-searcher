@@ -417,35 +417,9 @@ there.
 /* Larger than Desktop HD */
 @media (min-width: 1200px) {}
 
-/* Custom */
-.red {
-  background-color: red;
-}
-.tagSearch {
-  text-align: center;
-  padding-top: 2em;
-  padding-left: 1em;
-
-}
-
-.title{
-  text-align: center;
- 
-  padding-top: 2em;
-}
-.title h1{
-  font-weight: bold;
-}
-.about{
-  text-align: center;
-  padding-top: 2em;
-  padding-right: 1em;
+/* CUSTOM STYLES*/
 
 
-}
-#canvas {
-  border-style: dashed;
-}
 #search{
  text-align: center;
 
@@ -465,38 +439,4 @@ there.
   text-align: center;
   padding: 2em;
 
-}
-
-.userPhoto {
-  /*width: 500px;
-  height: 500px;*/
-  max-width:90%;
-  max-height:90%;
-  
-  border-width: 5px;
-  border-color: gold;
-  border-style: solid;
-  
-}
-
-.fanComments{
-  text-transform: uppercase;
-}
-.giphy {
-  color: white;
-  background-color: black;
-  border-style: solid;
-  border-width: 5px;
-  border-color: gold;
-  text-align: center;
-  padding: 1em;
-
-}
-.userGifs {
-  max-width: 90%;
-  height: auto;
-
-  border-width: 5px;
-  border-color: gold;
-  border-style: solid;
 }

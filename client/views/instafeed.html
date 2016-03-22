@@ -1,36 +1,34 @@
 
 <template name = 'instafeed'> 
-
+<!--display current hashtagId -->
 <h3># {{ headline }}</h3>
 
-<div class = "instagramPhoto" id = 'instafeed'>
+	<div class = "instagramPhoto" id = 'instafeed'>
 
-<!--CALL loadPicture function from app.js-->
-	{{#each loadPictures}}
-	<p>caption : )</p>
-	
-	<!-- LOAD ALL DATA FROM SUBSCRIPTION  -->
-	{{#each data }}
-		<!-- LOAD CAPTIONS "data.caption.text" -->
-		{{ #with caption }}
+	<!--CALL loadPicture function from app.js-->
+		{{#each loadPictures}}
+		
+		<!-- LOAD ALL DATA FROM SUBSCRIPTION  -->
+		{{#each data }}
 
-			<p>{{ text }}</p>
+			<!-- LOAD IMAGES "data.images.low_resolution.url" -->
+			{{#with images}}
+				{{#with low_resolution}}
 
-		{{/with}}
+				<img src="{{ url }}">
 
-		<!-- LOAD IMAGES "data.images.low_resolution.url" -->
-		{{#with images}}
-			{{#with low_resolution}}
+				{{/with}}
+			{{/with}}
 
-			<img src="{{ url }}">
-				
+			<!-- LOAD CAPTIONS "data.caption.text" -->
+			{{ #with caption }}
+
+				<p>{{ text }}</p>
 
 			{{/with}}
 
-		{{/with}}
-
-	{{/each}}   <!--DATA LOOP END-->
-{{/each}}  <!--loadPicture function loop END-->
-</div>
+		{{/each}}   <!--DATA LOOP END-->
+	{{/each}}  <!--loadPicture function loop END-->
+	</div>
 
 </template>

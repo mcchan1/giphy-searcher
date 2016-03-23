@@ -14,9 +14,12 @@
 			<!-- LOAD IMAGES "data.images.low_resolution.url" -->
 			{{#with images}}
 				{{#with low_resolution}}
-
+				<a class = "delete-image">
+					<i class ="fa fa-trash fa-2x"></i>
+				</a>
+				
 				<img src="{{ url }}">
-
+				
 				{{/with}}
 			{{/with}}
 

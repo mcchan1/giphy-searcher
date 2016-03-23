@@ -40,5 +40,8 @@ if(Meteor.isServer){
 			  } //else 
 			}); //http call 
 		}, //searchInstagram()
+		deletePhoto: function() {
+			console.log("deletePhoto");
+		}
 	}); //methods
 } //ifServer

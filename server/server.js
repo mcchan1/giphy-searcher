@@ -40,8 +40,13 @@ if(Meteor.isServer){
 			  } //else 
 			}); //http call 
 		}, //searchInstagram()
-		deletePhoto: function() {
-			console.log("deletePhoto");
+
+		deletePhoto: function(removeId) {
+			console.log('server delete function..');
+
+			//console.log(removeId);
+			Photographs.remove(removeId);
+			//Photographs.remove("APNWnNc8qS4bQWoyQ");	remove specific id works
 		}
 	}); //methods
 } //ifServer

@@ -33,15 +33,23 @@ Template.hashtag.events({
 		'loadPictures': function () {
 			//select data made available from subscription
 			return Photographs.find({},{fields: {
-				"data.caption.text":1, "data.images.low_resolution.url":1} });	
+				"data.caption.text":1, "data.images.low_resolution.url":1 } });	
 		}
 	}); //end of helpers
 
 	Template.instafeed.events({
-		'click .delete-image': function(event) {
+
+		'click .delete-image': function (event) {
+			
 			event.preventDefault();
-			Meteor.call('deletePhoto');
+			var removeId = this._id;
+			//console.log(removeId);
+
+			Meteor.call('deletePhoto', removeId); 	
 		}
+		// 'click .delete-image': function(e,t) {
+		// 	t.$('.instagram').toggle();
+		// }
 	}); //instafeed events
 
 //SUBSCRIPTIONS --subscribe to instafeed publication from server

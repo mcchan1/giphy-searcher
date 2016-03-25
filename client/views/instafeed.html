@@ -7,19 +7,23 @@
 
 	<!--CALL loadPicture function from app.js-->
 		{{#each loadPictures}}
-		
-		<!-- LOAD ALL DATA FROM SUBSCRIPTION  -->
+		<button class="delete-image" id="delete" type="submit">Delete</button>
+		<p>{{_id}}</p>
+				<!-- LOAD ALL DATA FROM SUBSCRIPTION  -->
 		{{#each data }}
-
+			
 			<!-- LOAD IMAGES "data.images.low_resolution.url" -->
 			{{#with images}}
 				{{#with low_resolution}}
-				<a class = "delete-image">
-					<i class ="fa fa-trash fa-2x"></i>
-				</a>
+					<!-- <div class = 'instagram'> -->
 				
-				<img src="{{ url }}">
+					<!-- <button class="delete-image" id="delete" type="submit">Delete</button> -->
 				
+					<img src="{{ url }}">
+
+				<!-- </div> -->
+				
+			
 				{{/with}}
 			{{/with}}
 
@@ -29,8 +33,9 @@
 				<p>{{ text }}</p>
 
 			{{/with}}
-
+		
 		{{/each}}   <!--DATA LOOP END-->
+
 	{{/each}}  <!--loadPicture function loop END-->
 	</div>
 

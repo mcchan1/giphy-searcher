@@ -20,7 +20,8 @@ Template.hashtag.events({
 			console.log("instagram loaded");
 
 		});
-		return false; //prevent the form reload
+		//return false; //prevent the form reload
+		
 	} //sumbit form	
 })
 //INSTAFEED TEMPLATE 
@@ -42,14 +43,11 @@ Template.hashtag.events({
 		'click .delete-image': function (event) {
 			
 			event.preventDefault();
+			//delete button hooks into this._id assigned to this div
 			var removeId = this._id;
-			//console.log(removeId);
-
+			//call method, and send removeId as arg
 			Meteor.call('deletePhoto', removeId); 	
 		}
-		// 'click .delete-image': function(e,t) {
-		// 	t.$('.instagram').toggle();
-		// }
 	}); //instafeed events
 
 //SUBSCRIPTIONS --subscribe to instafeed publication from server

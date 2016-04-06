@@ -4,15 +4,17 @@
  </head> 
 
   <body>
- <h1>Instagram Pics API</h1>
-{{ >loginButtons}}
-{{ > hashtag}}
+  	<div class = "container">
+  		<div class = "row">
+  			<div class = "col-md-12">
+  				 <h1>Instagram Pics API</h1>
+					{{ >loginButtons}}
+					{{ > hashtag}}
 
+					<!-- instafeed template  -->
+					{{> instafeed }}
+  			</div>
+  		</div>
 
-
-<!-- instafeed template  -->
-{{> instafeed }}
-
-
-
+  	</div>
   </body>

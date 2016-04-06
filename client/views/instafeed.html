@@ -1,42 +1,48 @@
 
 <template name = 'instafeed'> 
 <!--display current hashtagId -->
-<h3># {{ headline }}</h3>
+<h2># {{ headline }}</h2>
 
-	<div class = "instagramPhoto six columns" id = 'instafeed'>
+	<div class = "instagramPhoto" id = 'instafeed'>
+	<div class = "container">
+  		<div class = "row">
+  			<div class = "col-md-8 col-md-offset-2">
 
 	<!--CALL loadPicture function from app.js-->
 		{{#each loadPictures}}
 		
 		<!-- delete button must be placed in this loadPicture loop, otherwise delete will NOT hook into this._id 
 		for removal from Collection -->
-
-		<button class="delete-image" id="delete" type="submit">Delete</button>
-
-		<!-- <p>{{_id}}</p> -->
-				
-				<!-- LOAD ALL DATA FROM SUBSCRIPTION  -->
-		{{#each data }}
-			
-			<!-- LOAD IMAGES "data.images.low_resolution.url" -->
-			{{#with images}}
-				{{#with low_resolution}}
-				
-					<img src="{{ url }}">
-
-				{{/with}}
-			{{/with}}
-
-			<!-- LOAD CAPTIONS "data.caption.text" -->
-			{{ #with caption }}
-
-				<p>{{ text }}</p>
-
-			{{/with}}
 		
-		{{/each}}   <!--DATA LOOP END-->
+			<button class="delete-image btn btn-danger" id="delete" type="submit">Delete Hashtag</button>
 
-	{{/each}}  <!--loadPicture function loop END-->
+			<!-- <p>{{_id}}</p> -->
+					
+					<!-- LOAD ALL DATA FROM SUBSCRIPTION  -->
+				{{#each data }}
+				
+					<!-- LOAD IMAGES "data.images.low_resolution.url" -->
+					{{#with images}}
+						{{#with low_resolution}}
+						
+							<img src="{{ url }}" class= "img-responsive">
+
+						{{/with}}
+					{{/with}}
+
+					<!-- LOAD CAPTIONS "data.caption.text" -->
+					{{ #with caption }}
+
+						<p>{{ text }}</p>
+
+					{{/with}}
+		
+				{{/each}}   <!--DATA LOOP END-->
+
+			{{/each}}  <!--loadPicture function loop END-->
+			</div>
+		</div>
 	</div>
+</div>
 
 </template>

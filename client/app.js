@@ -38,6 +38,18 @@ Template.hashtag.events({
 		}
 	}); //end of helpers
 
+	// Template.images.helpers({
+	// 	'loadImages': function (){
+	// 		return Photographs.find({},{fields: {"data.images.low_resolution":1}});
+	// 	}
+	// });
+
+	// Template.caption.helpers({
+	// 	'loadCaption': function () {
+	// 		return Photographs.find({},{fields: {"data.caption.text":1}});
+	// 	}
+	// });
+
 	Template.instafeed.events({
 
 		'click .delete-image': function (event) {

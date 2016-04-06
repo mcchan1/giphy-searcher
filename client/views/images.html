@@ -1,0 +1,19 @@
+<template name = "images">
+
+		<!-- LOAD IMAGES "data.images.low_resolution.url" -->
+{{#each loadImages}}
+
+	<button class="delete-image btn btn-danger" id="delete" type="submit">Delete Hashtag</button>
+
+	{{#each data}}
+		{{#with images}}
+			{{#with low_resolution}}
+		
+			<img src="{{ url }}" class= "img-responsive">
+			
+
+			{{/with}}
+		{{/with}}
+	{{/each}}
+{{/each}}
+</template>

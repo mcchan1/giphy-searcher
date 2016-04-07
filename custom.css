@@ -1,0 +1,5 @@
+.instagramRow {
+	display: inline-block;
+	border-style: dashed;
+	word-wrap: break-word;
+}

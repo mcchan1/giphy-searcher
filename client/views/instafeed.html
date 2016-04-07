@@ -6,27 +6,26 @@
 	<div class = "instagramPhoto" id = 'instafeed'>
 	<div class = "container">
   		<div class = "row">
-  			<div class = "col-md-8 col-md-offset-2">
-  				
+  			<div class = "col-md-12">
+  					
   		<!--CALL loadPicture function from app.js-->
 		{{#each loadPictures}}
-		
+	
 		<!-- delete button must be placed in this loadPicture loop, otherwise delete will NOT hook into this._id 
 		for removal from Collection -->
-		
-			<button class="delete-image btn btn-danger" id="delete" type="submit">Delete Hashtag</button>
-
-			<!-- <p>{{_id}}</p> -->
-					
+			<div class = "instagramRow col-md-12">
+				<button class="delete-image btn btn-danger" id="delete" type="submit">Delete Hashtag</button>
 					<!-- LOAD ALL DATA FROM SUBSCRIPTION  -->
 				{{#each data }}
-				
+					<div class = "col-md-3">
 					<!-- LOAD IMAGES "data.images.low_resolution.url" -->
 					{{#with images}}
-						{{#with low_resolution}}
-						<button type="button" class="close" >&times;</button>
-							<img src="{{ url }}" class= "img-responsive">
-
+						{{#with thumbnail}}
+						
+							<img src="{{ url }}">
+						
+						<!-- <button type="button" class="close" >&times;</button> -->
+							
 						{{/with}}
 					{{/with}}
 
@@ -36,12 +35,13 @@
 						<p>{{ text }}</p>
 
 					{{/with}}
-				{{/each}}   
-				
-				<!--DATA LOOP END-->
-			{{/each}} 
-			 <!--loadPicture function loop END-->
+					</div>
+				{{/each}}   <!--DATA LOOP END-->
+					
 			</div>
+
+				{{/each}} <!--loadPicture function loop END-->
+			</div> 
 		</div>
 	</div>
 </div>

@@ -34,7 +34,7 @@ Template.hashtag.events({
 		'loadPictures': function () {
 			//select data made available from subscription
 			return Photographs.find({},{fields: {
-				"data.caption.text":1, "data.images.low_resolution.url":1 } });	
+				"data.caption.text":1, "data.images.thumbnail.url":1 } });	
 		}
 	}); //end of helpers
 

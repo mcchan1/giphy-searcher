@@ -1,5 +1,52 @@
+
+.searchContainer {
+	display: flex;
+
+}
 .instagramRow {
 	display: inline-block;
 	border-style: dashed;
 	word-wrap: break-word;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.instagramDisplay {
+	padding: .5em;
+}
+
+#headline {
+	text-transform: uppercase;
+}
+
+.infoHeader {
+	display: flex;
+	background-color: black;
+	color: white;
+	padding-bottom: .5em;	
+}
+
+.delete {
+	text-align: center;
+	margin-top: 1em;
+}
+
+.delete-image {
+	margin-top: 1em;
+}
+
+.title {
+	margin-top: 1em;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.date {
+	margin-top: 1em;
+	text-align: center;
+}
+
+.glyphicon.glyphicon-heart {
+    font-size: 2em;
+    color: red;
 }

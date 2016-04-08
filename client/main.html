@@ -1,16 +1,21 @@
  <head>
-<title>Instagram Meteor</title>
+<title>Instagram Book</title>
 
  </head> 
 
   <body>
+     {{ >loginButtons}}
   	<div class = "container">
   		<div class = "row">
   			<div class = "col-md-12">
-  				 <h1>Instagram Pics API</h1>
-					{{ >loginButtons}}
+  				 <h1 style ='text-align:center'>Instagram-<span class = "glyphicon glyphicon-heart" style="vertical-align:middle"></span>-Book</h1>
           
-					{{ > hashtag}}
+
+
+          {{ > hashtag}}
+
+         
+					
 
 					<!-- instafeed template  -->
 					{{> instafeed }}

@@ -1,17 +1,31 @@
 <template name = 'hashtag'>
-<div class = "container">
+
+	
+<div class = "container searchContainer">
 	<div class = "row">
-  		<div class = "col-md-8">
+  		<div class = "col-md-12">
 	
 			<form class = "hashtagSearch form-inline">
 				<div class = "form-group">
-					<input id = 'search' class = "form-control" type="text" name = "hashtagId" placeholder = "hashtag" required pattern="[a-zA-Z0-9]+">
 
-					<input type="submit" class = "btn btn-primary" id = 'submit' value ='hashtag search'>
+					<div class = "col-md-4">
+					<input id = 'search' class = "form-control" type="text" name = "hashtagId" placeholder = "hashtag" required pattern="[a-zA-Z0-9]+">
+				</div>
+
+						<div class = 'col-md-4'>
+							 <!-- <span class="input-group-btn"> -->
+							<input type="submit" class = "btn btn-primary" id = 'submit' value ='hashtag search'>
+					</div>
+
 				</div>
 			</form>
 
 		</div>
+
+		<div class = 'col-md-4' id = 'headline'>
+			<h2># {{ headline }}</h2>
+		</div>
+
 	</div>
 </div>
 </template>

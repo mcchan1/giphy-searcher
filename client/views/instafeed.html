@@ -2,6 +2,7 @@
 <template name = 'instafeed'> 
 <!--display current hashtagId -->
 <!-- <h2 id = 'headline'># {{ headline }}</h2> -->
+{{#if currentUser}}
 
 <div class = "instagramPhoto" id = 'instafeed'>
 	<div class = "container">
@@ -10,51 +11,52 @@
   		<!--CALL loadPicture function from app.js-->
 		{{#each loadPictures}}
 	
-			<div class = "container infoHeader">
-			
-				<div class = 'col-md-4 title'>
-					<h3>Hashtag Title</h3>
-				</div>
-				<div class = 'col-md-4 date'>
-					<h3>Date</h3>
-				</div>
-				<!-- delete button must be placed in this loadPicture loop, otherwise delete will NOT hook into this._id 
-		for removal from Collection -->
-				<div class = 'col-md-4 delete'>
-					<button class="delete-image btn btn-danger" id="delete" type="submit">Delete Hashtag</button>
-				</div>
-
-			</div>
-			<div class = "instagramRow col-md-12">
+				<div class = "container infoHeader">
 				
-					<!-- LOAD ALL DATA FROM SUBSCRIPTION  -->
-					{{#each data }}
-						<div class = "col-md-3 instagramDisplay" >
+					<div class = 'col-md-4 title'>
+						<h3>Hashtag Title</h3>
+					</div>
+					<div class = 'col-md-4 date'>
+						<h3>Date</h3>
+					</div>
+					<!-- delete button must be placed in this loadPicture loop, otherwise delete will NOT hook into this._id 
+			for removal from Collection -->
+					<div class = 'col-md-4 delete'>
+						<button class="delete-image btn btn-danger" id="delete" type="submit">Delete Hashtag</button>
+					</div>
+
+				</div> <!-- infoHeader div -->
+				
+				<div class = "instagramRow col-md-12">
 					
-						<!-- LOAD IMAGES "data.images.low_resolution.url" -->
-						{{#with images}}
-							{{#with low_resolution}}
-							
-								<img src="{{ url }}" class = "img-responsive" alt = 'so sorry image has been removed'>
-								<br/>
-								
-							{{/with}}
-						{{/with}}
-
-						<!-- LOAD CAPTIONS "data.caption.text" -->
-						{{ #with caption }}
-
-							<p>{{ text }}</p>
+						<!-- LOAD ALL DATA FROM SUBSCRIPTION  -->
+						{{#each data }}
+							<div class = "col-md-3 instagramDisplay" >
 						
-						{{/with}}
+							<!-- LOAD IMAGES "data.images.low_resolution.url" -->
+							{{#with images}}
+								{{#with low_resolution}}
+
+									<img src="{{ url }}" class = "img-responsive" alt = 'so sorry image has been removed'>
+									<br/>
+									
+								{{/with}}
+							{{/with}}
+
+							<!-- LOAD CAPTIONS "data.caption.text" -->
+							{{ #with caption }}
+
+								<p>{{ text }}</p>
 							
-						</div> 
-					{{/each}}   <!--DATA LOOP END-->	
-			</div> <!-- instagramRow Div -->
-	
+							{{/with}}
+								
+							</div> 
+						{{/each}}   <!--DATA LOOP END-->	
+				</div> <!-- instagramRow Div -->
+
 				{{/each}} <!--loadPicture function loop END-->
 		</div>
 	</div>
-</div>
-
+</div> <!-- instagramPhoto div -->
+{{/if}}
 </template>

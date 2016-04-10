@@ -4,15 +4,19 @@
 
 }
 .instagramRow {
-	display: inline-block;
+	/*display: inline-block;
 	border-style: dashed;
 	word-wrap: break-word;
 	display: flex;
-	flex-wrap: wrap;
+	flex-wrap: wrap;*/
+	/*overflow-x: scroll;
+	overflow-y: hidden;
+	white-space:nowrap;*/
 }
 
 .instagramDisplay {
 	padding: .5em;
+	/*display: inline-block;*/
 }
 
 #headline {

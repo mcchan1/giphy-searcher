@@ -1,29 +1,31 @@
 
 <template name = 'instafeed'> 
-<!--display current hashtagId -->
-<!-- <h2 id = 'headline'># {{ headline }}</h2> -->
+
 {{#if currentUser}}
 
 <div class = "instagramPhoto" id = 'instafeed'>
 	<div class = "container">
 		<div class = "row">	
-  					
+			
   		<!--CALL loadPicture function from app.js-->
 		{{#each loadPictures}}
 	
 				<div class = "container infoHeader">
-				
+					
 					<div class = 'col-md-4 title'>
-						<h3>Hashtag Title</h3>
+						<h3>tag</h3>
 					</div>
 					<div class = 'col-md-4 date'>
-						<h3>Date</h3>
+						<h3>dateTagged</h3>
 					</div>
+
 					<!-- delete button must be placed in this loadPicture loop, otherwise delete will NOT hook into this._id 
 			for removal from Collection -->
 					<div class = 'col-md-4 delete'>
 						<button class="delete-image btn btn-danger" id="delete" type="submit">Delete Hashtag</button>
+
 					</div>
+
 
 				</div> <!-- infoHeader div -->
 				
@@ -58,5 +60,5 @@
 		</div>
 	</div>
 </div> <!-- instagramPhoto div -->
-{{/if}}
+{{/if}} <!-- current user div -->
 </template>

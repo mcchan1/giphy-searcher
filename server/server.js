@@ -15,7 +15,7 @@ if(Meteor.isServer){
 		console.log('publication ready');
 		//only two fields from Photographs Collection will be available for publication -'text' and 'url'
 		return Photographs.find({},{fields: {"data.caption.text":-1,"data.images.low_resolution.url":-1} });
-		
+		return Customer.find({}, {fields: {"tag":-1, "dateTagged":-1}});
 	}); //end of publish
 //METHODS 
 	Meteor.methods({
@@ -27,7 +27,7 @@ if(Meteor.isServer){
 			HTTP.call( 'GET', 'https://api.instagram.com/v1/tags/'+hashtagIdVar+'/media/recent?access_token=1634185146.1677ed0.d05110c153ab4f86b27f2e99d58a3f3c', {
 				params: {
 					  	
-				  'count': 8, //return two instagram posts
+				  'count': 4, //return two instagram posts
 				}
 			}, function( error, data ) {
 
@@ -39,6 +39,11 @@ if(Meteor.isServer){
 			  	photos = data.data; 
 				//Insert all data into Photographs Collection. 
 			    Photographs.insert(photos);
+
+			    Customer.insert({
+			    	tag:hashtagIdVar, 
+			    	dateTagged: new Date()
+			    });
 			  } //else 
 			}); //http call 
 		}, //searchInstagram()
@@ -46,6 +51,7 @@ if(Meteor.isServer){
 		deletePhoto: function(removeId) {
 			//removeId is arg from server side
 			Photographs.remove(removeId);
+			//Customer.remove()
 		} //deletePhoto()
 	}); //methods
 } //ifServer

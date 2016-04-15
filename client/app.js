@@ -26,15 +26,14 @@ Template.hashtag.events({
 })
 //INSTAFEED TEMPLATE 
 	Template.instafeed.helpers({
-		// 'headline': function () {
-		// 	//display value of hashtagId
-		// 	return Session.get('hashtagId');
-		// }, 
-
+	
 		'loadPictures': function () {
 			//select data made available from subscription
 			return Photographs.find({},{fields: {
 				"data.caption.text":1, "data.images.low_resolution.url":1 } });	
+		}, 
+		'loadCustomer': function () {
+			return Customer.find({},{fields: {"tag":1, 'dateTagged':1}});
 		}
 	}); //end of helpers
 

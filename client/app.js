@@ -32,9 +32,9 @@ Template.hashtag.events({
 			return Photographs.find({},{fields: {
 				"data.caption.text":1, "data.images.low_resolution.url":1 } });	
 		}, 
-		'loadCustomer': function () {
-			return Customer.find({},{fields: {"tag":1, 'dateTagged':1}});
-		}
+		// 'loadCustomer': function () {
+		// 	return Customer.find({},{fields: {"tag":1, 'dateTagged':1}});
+		// }
 	}); //end of helpers
 
 	Template.hashtag.helpers({
@@ -43,7 +43,14 @@ Template.hashtag.events({
 			return Session.get('hashtagId');
 		},
 
-	})
+	});
+
+	Template.customerTag.helpers({
+		'loadCustomer': function () {
+			return Customer.find({},{fields: {"tag":1, 'dateTagged':1}});
+		}
+
+	});
 
 	// Template.images.helpers({
 	// 	'loadImages': function (){

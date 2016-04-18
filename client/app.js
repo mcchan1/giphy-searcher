@@ -82,4 +82,8 @@ Template.hashtag.events({
 		console.log("photograph count:" + Photographs.find().count());
 	});	
 
+	Meteor.subscribe('customerFeed', function(){
+		console.log('client customer ready');
+	});
+
 } //end of isClient

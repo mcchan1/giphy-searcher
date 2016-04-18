@@ -15,8 +15,13 @@ if(Meteor.isServer){
 		console.log('publication ready');
 		//only two fields from Photographs Collection will be available for publication -'text' and 'url'
 		return Photographs.find({},{fields: {"data.caption.text":-1,"data.images.low_resolution.url":-1} });
-		return Customer.find({}, {fields: {"tag":-1, "dateTagged":-1}});
+		// return Customer.find({}, {fields: {"tag":-1, "dateTagged":-1}});
 	}); //end of publish
+
+	Meteor.publish('customerFeed', function publishCustomer(){
+		console.log('customerFeed ready');
+		return Customer.find({}, {fields: {"tag":-1, "dateTagged":-1}});
+	});
 //METHODS 
 	Meteor.methods({
 		//search instagram, using http-request package 

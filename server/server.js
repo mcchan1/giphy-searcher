@@ -6,22 +6,18 @@ if(Meteor.isServer){
 		console.log("startup server function");
 
 	});
-
-
 //PUBLICATIONS 
 	Meteor.publish('instafeed', function publishFunction(){
 		//wait 2s before loading data
 		Meteor._sleepForMs(2000);
 		console.log('publication ready');
-		//only two fields from Photographs Collection will be available for publication -'text' and 'url'
-		return Photographs.find({},{fields: {"data.caption.text":-1,"data.images.low_resolution.url":-1} });
-		// return Customer.find({}, {fields: {"tag":-1, "dateTagged":-1}});
+		// fields from Photographs Collection available for publication -'text' and 'url from instagram
+		//plus fields created before insert using collection-hooks package'
+		return Photographs.find({},{fields: {"data.caption.text":-1,"data.images.low_resolution.url":-1, 
+			'dateTagged':-1,'tag':-1}});
 	}); //end of publish
 
-	Meteor.publish('customerFeed', function publishCustomer(){
-		console.log('customerFeed ready');
-		return Customer.find({}, {fields: {"tag":-1, "dateTagged":-1}});
-	});
+
 //METHODS 
 	Meteor.methods({
 		//search instagram, using http-request package 
@@ -41,14 +37,19 @@ if(Meteor.isServer){
 			  } 
 			  else {
 			  	//assign 'data' response and first'data' layer in instagram endpoint to 'photos'
-			  	photos = data.data; 
-				//Insert all data into Photographs Collection. 
-			    Photographs.insert(photos);
+			  	//photos = data.data; 
 
-			    Customer.insert({
-			    	tag:hashtagIdVar, 
-			    	dateTagged: new Date()
-			    });
+				//Insert all data into Photographs Collection. 
+				
+				Photographs.before.insert(function (userId, doc) { 
+					console.log(userId);
+					doc.dateTagged = new Date();
+					doc.tag = hashtagIdVar;
+				});
+				Photographs.insert(data.data);
+				
+			    //Photographs.insert({photos:data.data,tag:hashtagIdVar,dateTagged: new Date()});
+		
 			  } //else 
 			}); //http call 
 		}, //searchInstagram()
@@ -56,7 +57,6 @@ if(Meteor.isServer){
 		deletePhoto: function(removeId) {
 			//removeId is arg from server side
 			Photographs.remove(removeId);
-			//Customer.remove()
 		} //deletePhoto()
 	}); //methods
 } //ifServer

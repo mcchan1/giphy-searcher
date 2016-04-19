@@ -11,22 +11,20 @@
 		{{#each loadPictures}}
 	
 				<div class = "container infoHeader">
-					
+				
 					<div class = 'col-md-4 title'>
-						<h3>tag</h3>
-					</div>
-					<div class = 'col-md-4 date'>
-						<h3>dateTagged</h3>
+						<h3>{{tag}}</h3>
 					</div>
 
+					<div class = 'col-md-4 date'>
+						<h3>{{dateTagged}}</h3>
+					</div>
+					
 					<!-- delete button must be placed in this loadPicture loop, otherwise delete will NOT hook into this._id 
 			for removal from Collection -->
 					<div class = 'col-md-4 delete'>
 						<button class="delete-image btn btn-danger" id="delete" type="submit">Delete Hashtag</button>
-
 					</div>
-
-
 				</div> <!-- infoHeader div -->
 				
 				<div class = "instagramRow col-md-12">

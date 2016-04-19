@@ -20,8 +20,7 @@ Template.hashtag.events({
 			console.log("instagram loaded");
 
 		});
-		//return false; //prevent the form reload
-		
+		//return false; //prevent the form reload		
 	} //sumbit form	
 })
 //INSTAFEED TEMPLATE 
@@ -29,12 +28,9 @@ Template.hashtag.events({
 	
 		'loadPictures': function () {
 			//select data made available from subscription
-			return Photographs.find({},{fields: {
-				"data.caption.text":1, "data.images.low_resolution.url":1 } });	
+			return Photographs.find({},{fields: {"data.caption.text":1, "data.images.low_resolution.url":1,
+				'tag':1,'dateTagged':1}});	
 		}, 
-		// 'loadCustomer': function () {
-		// 	return Customer.find({},{fields: {"tag":1, 'dateTagged':1}});
-		// }
 	}); //end of helpers
 
 	Template.hashtag.helpers({
@@ -44,25 +40,6 @@ Template.hashtag.events({
 		},
 
 	});
-
-	Template.customerTag.helpers({
-		'loadCustomer': function () {
-			return Customer.find({},{fields: {"tag":1, 'dateTagged':1}});
-		}
-
-	});
-
-	// Template.images.helpers({
-	// 	'loadImages': function (){
-	// 		return Photographs.find({},{fields: {"data.images.low_resolution":1}});
-	// 	}
-	// });
-
-	// Template.caption.helpers({
-	// 	'loadCaption': function () {
-	// 		return Photographs.find({},{fields: {"data.caption.text":1}});
-	// 	}
-	// });
 
 	Template.instafeed.events({
 
@@ -81,9 +58,5 @@ Template.hashtag.events({
 		//count number of photographs in Publication 'instafeed'
 		console.log("photograph count:" + Photographs.find().count());
 	});	
-
-	Meteor.subscribe('customerFeed', function(){
-		console.log('client customer ready');
-	});
 
 } //end of isClient

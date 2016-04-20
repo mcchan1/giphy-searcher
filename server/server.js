@@ -14,7 +14,7 @@ if(Meteor.isServer){
 		// fields from Photographs Collection available for publication -'text' and 'url from instagram
 		//plus fields created before insert using collection-hooks package'
 		return Photographs.find({},{fields: {"data.caption.text":-1,"data.images.low_resolution.url":-1, 
-			'dateTagged':-1,'tag':-1}});
+			'dateTagged':-1,'tag':-1, 'memory':-1}});
 	}); //end of publish
 
 
@@ -42,9 +42,9 @@ if(Meteor.isServer){
 				//Insert all data into Photographs Collection. 
 				
 				Photographs.before.insert(function (userId, doc) { 
-					console.log(userId);
 					doc.dateTagged = new Date();
 					doc.tag = hashtagIdVar;
+					doc.memory = '';
 				});
 				Photographs.insert(data.data);
 				
@@ -55,8 +55,15 @@ if(Meteor.isServer){
 		}, //searchInstagram()
 
 		deletePhoto: function(removeId) {
-			//removeId is arg from server side
+			//removeId is arg from client side
 			Photographs.remove(removeId);
-		} //deletePhoto()
+		},//deletePhoto()
+
+		addNote: function(newInstagramNote, noteId){
+			console.log(newInstagramNote);
+			//db.photographs.update({"tag":"qoobear"},{$set:{"memory":"dubba"}})
+			Photographs.update(noteId,{$set:{memory:newInstagramNote}});
+			
+		} //addNote
 	}); //methods
 } //ifServer

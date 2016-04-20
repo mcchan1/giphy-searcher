@@ -42,9 +42,7 @@ Template.hashtag.events({
 	});
 
 	Template.instafeed.events({
-
 		'click .delete-image': function (event) {
-			
 			event.preventDefault();
 			//delete button hooks into this._id assigned to this div
 			var removeId = this._id;
@@ -52,6 +50,19 @@ Template.hashtag.events({
 			Meteor.call('deletePhoto', removeId); 	
 		}
 	}); //instafeed events
+
+	Template.notes.events({
+		'submit .new-note': function (event) {
+			event.preventDefault();
+			var noteId = this._id;
+			var newInstagramNote = event.target.instagramNote.value;
+			console.log(newInstagramNote);
+			Meteor.call('addNote', newInstagramNote, noteId, function(error,results){
+				console.log('note added');
+			});
+
+		}
+	});
 
 //SUBSCRIPTIONS --subscribe to instafeed publication from server
 	Meteor.subscribe('instafeed', function() {

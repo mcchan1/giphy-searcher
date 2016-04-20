@@ -13,11 +13,12 @@
 				<div class = "container infoHeader">
 				
 					<div class = 'col-md-4 title'>
-						<h3>{{tag}}</h3>
+						<h3>#{{tag}}</h3>
 					</div>
 
 					<div class = 'col-md-4 date'>
-						<h3>{{dateTagged}}</h3>
+						<h4>Date Searched</h4>
+						<h4>{{dateTagged}}</h4>
 					</div>
 					
 					<!-- delete button must be placed in this loadPicture loop, otherwise delete will NOT hook into this._id 
@@ -52,11 +53,14 @@
 								
 							</div> 
 						{{/each}}   <!--DATA LOOP END-->	
+					{{>notes}}
 				</div> <!-- instagramRow Div -->
+
 
 				{{/each}} <!--loadPicture function loop END-->
 		</div>
 	</div>
 </div> <!-- instagramPhoto div -->
+
 {{/if}} <!-- current user div -->
 </template>

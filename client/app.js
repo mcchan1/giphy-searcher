@@ -29,7 +29,7 @@ Template.hashtag.events({
 		'loadPictures': function () {
 			//select data made available from subscription
 			return Photographs.find({},{fields: {"data.caption.text":1, "data.images.low_resolution.url":1,
-				'tag':1,'dateTagged':1}});	
+				'tag':1,'dateTagged':1, 'memory':1}});	
 		}, 
 	}); //end of helpers
 
@@ -42,13 +42,25 @@ Template.hashtag.events({
 	});
 
 	Template.instafeed.events({
-		'click .delete-image': function (event) {
+		'click .delete-hashtag': function (event) {
 			event.preventDefault();
 			//delete button hooks into this._id assigned to this div
 			var removeId = this._id;
 			//call method, and send removeId as arg
-			Meteor.call('deletePhoto', removeId); 	
-		}
+			Meteor.call('deleteHashtag', removeId); 	
+		}, 
+
+		'click #close': function(event) {
+			event.preventDefault();
+			console.log('instagramDisplay');
+			
+			// var photoUrl = this;
+			// var id = event.currentTarget.url;
+			// Meteor.call('deletePhoto', photoUrl,id, function(error, results){
+			// 	console.log('photos deleting...');
+			// });
+			
+		},
 	}); //instafeed events
 
 	Template.notes.events({

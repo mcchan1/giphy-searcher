@@ -17,7 +17,15 @@
 .instagramDisplay {
 	padding: .5em;
 	display: inline-block;
-	border-style: dotted;
+	/*border-style: dotted;*/
+}
+#close {
+    
+    position: absolute;
+   font-size:18px;
+   color: red;
+    top: 2px;
+    right: 2px;
 }
 
 #headline {
@@ -36,7 +44,7 @@
 	margin-top: 1em;
 }
 
-.delete-image {
+.delete-hashtag {
 	margin-top: 1em;
 }
 

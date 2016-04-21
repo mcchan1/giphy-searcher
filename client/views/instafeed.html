@@ -14,6 +14,7 @@
 				
 					<div class = 'col-md-4 title'>
 						<h3>#{{tag}}</h3>
+						<p>{{memory}}</p>
 					</div>
 
 					<div class = 'col-md-4 date'>
@@ -24,7 +25,7 @@
 					<!-- delete button must be placed in this loadPicture loop, otherwise delete will NOT hook into this._id 
 			for removal from Collection -->
 					<div class = 'col-md-4 delete'>
-						<button class="delete-image btn btn-danger" id="delete" type="submit">Delete Hashtag</button>
+						<button class="delete-hashtag btn btn-danger" id="delete" type="submit">Delete Hashtag</button>
 					</div>
 				</div> <!-- infoHeader div -->
 				
@@ -33,13 +34,16 @@
 						<!-- LOAD ALL DATA FROM SUBSCRIPTION  -->
 						{{#each data }}
 							<div class = "col-md-3 instagramDisplay" >
+								<a href="#" id ="close"><span class = "glyphicon glyphicon-remove"></span> </a>
 						
 							<!-- LOAD IMAGES "data.images.low_resolution.url" -->
 							{{#with images}}
 								{{#with low_resolution}}
 
+
 									<img src="{{ url }}" class = "img-responsive" alt = 'so sorry image has been removed'>
 									<br/>
+
 									
 								{{/with}}
 							{{/with}}
@@ -52,7 +56,8 @@
 							{{/with}}
 								
 							</div> 
-						{{/each}}   <!--DATA LOOP END-->	
+						{{/each}}   <!--DATA LOOP END-->
+						<!--  NOTES TEMPLATE -->	
 					{{>notes}}
 				</div> <!-- instagramRow Div -->
 

@@ -54,16 +54,20 @@ if(Meteor.isServer){
 			}); //http call 
 		}, //searchInstagram()
 
-		deletePhoto: function(removeId) {
+		deleteHashtag: function(removeId) {
 			//removeId is arg from client side
 			Photographs.remove(removeId);
 		},//deletePhoto()
+		deletePhoto: function (photoUrl, id) {
+			console.log('deleted photo and caption');
+			//Photographs.update({id:id}, {$pull:{data:url}})
+			console.log(photoUrl);
+		},
 
 		addNote: function(newInstagramNote, noteId){
 			console.log(newInstagramNote);
 			//db.photographs.update({"tag":"qoobear"},{$set:{"memory":"dubba"}})
-			Photographs.update(noteId,{$set:{memory:newInstagramNote}});
-			
+			Photographs.update(noteId,{$set:{memory:newInstagramNote}});		
 		} //addNote
 	}); //methods
 } //ifServer

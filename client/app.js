@@ -52,13 +52,18 @@ Template.hashtag.events({
 
 		'click #close': function(event) {
 			event.preventDefault();
-			console.log('instagramDisplay');
-			
-			// var photoUrl = this;
-			// var id = event.currentTarget.url;
-			// Meteor.call('deletePhoto', photoUrl,id, function(error, results){
-			// 	console.log('photos deleting...');
-			// });
+			console.log('removing instagramDisplay div...');
+			var photoUrl = this.images.low_resolution.url;
+			var closeX = $(event.target);
+			var closeDiv = $(closeX.closest('div'));
+			closeDiv.remove();
+
+			//$('#close').closest('div').remove();
+			console.log('delete..' + photoUrl);
+		
+			Meteor.call('deletePhoto', photoUrl, function(error, results){
+				console.log('photos method deleting...');
+			});
 			
 		},
 	}); //instafeed events

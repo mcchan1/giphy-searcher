@@ -58,10 +58,14 @@ if(Meteor.isServer){
 			//removeId is arg from client side
 			Photographs.remove(removeId);
 		},//deletePhoto()
-		deletePhoto: function (photoUrl, id) {
+		deletePhoto: function (photoUrl) {
 			console.log('deleted photo and caption');
-			//Photographs.update({id:id}, {$pull:{data:url}})
 			console.log(photoUrl);
+
+			//Photographs.update({id:id}, {$pull:{data.images.low_resolution.url}})
+			//Photographs.update({}, {$unset:{'images.low_resolution':{url:photoUrl}}});
+			//Photographs.update({}, {$pull:{'images.low_resolution':{url:photoUrl}}});
+			//Photographs.remove({},{url:photoUrl});  //removes everything
 		},
 
 		addNote: function(newInstagramNote, noteId){

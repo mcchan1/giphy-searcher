@@ -29,7 +29,7 @@ Template.hashtag.events({
 		'loadPictures': function () {
 			//select data made available from subscription
 			return Photographs.find({},{fields: {"data.caption.text":1, "data.images.low_resolution.url":1,
-				'tag':1,'dateTagged':1, 'memory':1}});	
+				'tag':1,'dateTagged':1, "data.user.username":1, "data.user.profile_picture":1}});	
 		}, 
 	}); //end of helpers
 
@@ -53,12 +53,13 @@ Template.hashtag.events({
 		'click #close': function(event) {
 			event.preventDefault();
 			console.log('removing instagramDisplay div...');
+			//consider using photoUrl to remove via $pull in collection. 
 			var photoUrl = this.images.low_resolution.url;
+			//jquery to remove div
 			var closeX = $(event.target);
 			var closeDiv = $(closeX.closest('div'));
 			closeDiv.remove();
 
-			//$('#close').closest('div').remove();
 			console.log('delete..' + photoUrl);
 		
 			Meteor.call('deletePhoto', photoUrl, function(error, results){
@@ -79,6 +80,13 @@ Template.hashtag.events({
 			});
 
 		}
+	});
+
+	Template.notes.helpers({
+		'loadMemory': function() {
+			return Photographs.find({}, {fields: {'memory':1} });
+		}
+
 	});
 
 //SUBSCRIPTIONS --subscribe to instafeed publication from server

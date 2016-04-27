@@ -6,7 +6,7 @@
 <div class = "instagramPhoto" id = 'instafeed'>
 	<div class = "container">
 		<div class = "row">	
-			
+
   		<!--CALL loadPicture function from app.js-->
 		{{#each loadPictures}}
 	
@@ -14,7 +14,6 @@
 				
 					<div class = 'col-md-4 title'>
 						<h3>#{{tag}}</h3>
-						<p>{{memory}}</p>
 					</div>
 
 					<div class = 'col-md-4 date'>
@@ -28,7 +27,7 @@
 						<button class="delete-hashtag btn btn-danger" id="delete" type="submit">Delete Hashtag</button>
 					</div>
 				</div> <!-- infoHeader div -->
-				
+
 				<div class = "instagramRow col-md-12">
 					
 						<!-- LOAD ALL DATA FROM SUBSCRIPTION  -->
@@ -39,14 +38,20 @@
 							<!-- LOAD IMAGES "data.images.low_resolution.url" -->
 							{{#with images}}
 								{{#with low_resolution}}
-
-
 									<img src="{{ url }}" class = "img-responsive" alt = 'so sorry image has been removed'>
 									<br/>
-
-									
 								{{/with}}
 							{{/with}}
+							<div class = "userInfo">
+							<!-- LOAD USERNAME "data.user.username" -->
+							{{#with user}}
+							
+							<!-- LOAD PROFILE PICTURE 'data.user.profile_picture' -->
+							<img src="{{profile_picture}}" class = "img-circle profileImg" alt='profile pic'>
+							<p>Photo By: {{username}}</p>
+
+							{{/with}}
+						</div>
 
 							<!-- LOAD CAPTIONS "data.caption.text" -->
 							{{ #with caption }}

@@ -58,6 +58,14 @@
 	margin-top: 1em;
 	text-align: center;
 }
+.userInfo p {
+	display: inline-block;
+	font-weight: bold;
+}
+.profileImg {
+	display: inline-block;
+	width: 3em;
+}
 
 .glyphicon.glyphicon-heart {
     font-size: 2em;

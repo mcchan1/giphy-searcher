@@ -14,7 +14,7 @@ if(Meteor.isServer){
 		// fields from Photographs Collection available for publication -'text' and 'url from instagram
 		//plus fields created before insert using collection-hooks package'
 		return Photographs.find({},{fields: {"data.caption.text":-1,"data.images.low_resolution.url":-1, 
-			'dateTagged':-1,'tag':-1, 'memory':-1}});
+			'dateTagged':-1,'tag':-1, 'memory':-1, "data.user.username":-1, "data.user.profile_picture":-1}});
 	}); //end of publish
 
 
@@ -28,7 +28,7 @@ if(Meteor.isServer){
 			HTTP.call( 'GET', 'https://api.instagram.com/v1/tags/'+hashtagIdVar+'/media/recent?access_token=1634185146.1677ed0.d05110c153ab4f86b27f2e99d58a3f3c', {
 				params: {
 					  	
-				  'count': 4, //return two instagram posts
+				  'count': 8, //return two instagram posts
 				}
 			}, function( error, data ) {
 
@@ -59,9 +59,7 @@ if(Meteor.isServer){
 			Photographs.remove(removeId);
 		},//deletePhoto()
 		deletePhoto: function (photoUrl) {
-			console.log('deleted photo and caption');
 			console.log(photoUrl);
-
 			//Photographs.update({id:id}, {$pull:{data.images.low_resolution.url}})
 			//Photographs.update({}, {$unset:{'images.low_resolution':{url:photoUrl}}});
 			//Photographs.update({}, {$pull:{'images.low_resolution':{url:photoUrl}}});

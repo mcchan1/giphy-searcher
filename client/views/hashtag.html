@@ -1,31 +1,36 @@
 <template name = 'hashtag'>
-
+<div class="container-fluid">
+    <div class="row"> 
 	
 <div class = "container searchContainer">
 	<div class = "row">
-  		<div class = "col-md-12">
-	
-			<form class = "hashtagSearch form-inline">
-				<div class = "form-group">
+  		<div class = "col-md-12 search-form">
+  			
+			<!-- <div class = "col-md-6">  -->
+				<form class = "hashtagSearch form-inline">
+					<div class = "form-group">
 
-					<div class = "col-md-4">
-					<input id = 'search' class = "form-control" type="text" name = "hashtagId" placeholder = "hashtag" required pattern="[a-zA-Z0-9]+">
-				</div>
+						<!-- <div class = "col-md-4"> -->
+							<input id = 'search' class = "form-control" type="text" name = "hashtagId" placeholder = "hashtag" required pattern="[a-zA-Z0-9\s]+">
+						<!-- </div> -->
 
-						<div class = 'col-md-4'>
-							 <!-- <span class="input-group-btn"> -->
-							<input type="submit" class = "btn btn-primary" id = 'submit' value ='hashtag search'>
+							<!-- <div class = 'col-md-4'> -->
+								 <!-- <span class="input-group-btn"> -->
+								<input type="submit" class = "btn btn-primary" id = 'submit' value ='hashtag search'>
+						<!-- </div> -->
 					</div>
-
-				</div>
-			</form>
+				</form>
+			<!-- </div>	 -->
+			
+			<!-- <div class = 'col-md-6' id = 'headline'> -->
+				<h2># {{ headline }}</h2>
+			<!-- </div> -->
 
 		</div>
-
-		<div class = 'col-md-4' id = 'headline'>
-			<h2># {{ headline }}</h2>
-		</div>
-
 	</div>
 </div>
+
+</div>
+</div>
+
 </template>

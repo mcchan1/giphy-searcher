@@ -1,21 +1,23 @@
  <head>
-<title>Instagram Memories</title>
+<title>GIPHY ALBUM</title>
 
  </head> 
 
   <body>
+    <div class = "login">
+      {{ >loginButtons}}
+
+    </div>
       
-     {{ >loginButtons}}
+     
+
   	<div class = "container">
   		<div class = "row">
   			<div class = "col-md-12">
-  				 <h1 style ='text-align:center'>Instagram-<span class = "glyphicon glyphicon-heart" style="vertical-align:middle"></span>-Memories</h1>
-
-          {{ > hashtag}}
-
-					<!-- instafeed template  -->
-					{{> instafeed }}
+  				 <h1 style ='text-align:center'>GIPHY-<span class = "glyphicon glyphicon-heart" style="vertical-align:middle"></span>-ALBUM</h1>
   			</div>
   		</div>
   	</div>
+    {{ > hashtag}}
+    {{ > instafeed }}
   </body>

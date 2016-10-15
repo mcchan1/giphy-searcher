@@ -1,14 +1,18 @@
 
 .searchContainer {
 	display: flex;
+}
 
+.login{
+	padding: 1em;
 }
 .instagramRow {
 	display: inline-block;
-	border-style: dashed;
+	/*border-style: dashed;*/
 	word-wrap: break-word;
 	display: flex;
 	flex-wrap: wrap;
+	border: dotted;
 	/*overflow-x: scroll;
 	overflow-y: hidden;
 	white-space:nowrap;*/
@@ -33,8 +37,8 @@
 }
 
 .infoHeader {
-	display: flex;
-	background-color: black;
+	/*display: flex;*/
+	background-color: grey;
 	color: white;
 	padding-bottom: .5em;	
 }
@@ -58,13 +62,14 @@
 	margin-top: 1em;
 	text-align: center;
 }
-.userInfo p {
-	display: inline-block;
-	font-weight: bold;
+.gif-notes{
+	padding: .8em;
 }
-.profileImg {
-	display: inline-block;
-	width: 3em;
+
+
+.memory {
+	padding: 1em;
+	margin: 2px;
 }
 
 .glyphicon.glyphicon-heart {

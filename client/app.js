@@ -17,7 +17,7 @@ Template.hashtag.events({
 		console.log(hashtagIdVar);
 
 		Meteor.call('searchInstagram', hashtagIdVar, function(error, results) {
-			console.log("instagram loaded");
+			console.log("gifs loaded");
 
 		});
 		//return false; //prevent the form reload		
@@ -28,9 +28,11 @@ Template.hashtag.events({
 	
 		'loadPictures': function () {
 			//select data made available from subscription
-			return Photographs.find({},{fields: {"data.caption.text":1, "data.images.low_resolution.url":1,
-				'tag':1,'dateTagged':1, "data.user.username":1, "data.user.profile_picture":1}});	
-		}, 
+			console.log('loadPictures');
+			return Photographs.find({},{fields: { "data.url":1,"data.images.fixed_height":1,"data.rating":1,"data.source":1,"data.username":1,
+				'tag':1,'dateTagged':1, }});
+		},
+
 	}); //end of helpers
 
 	Template.hashtag.helpers({
@@ -38,7 +40,6 @@ Template.hashtag.events({
 			//display value of hashtagId
 			return Session.get('hashtagId');
 		},
-
 	});
 
 	Template.instafeed.events({
@@ -54,39 +55,38 @@ Template.hashtag.events({
 			event.preventDefault();
 			console.log('removing instagramDisplay div...');
 			//consider using photoUrl to remove via $pull in collection. 
-			var photoUrl = this.images.low_resolution.url;
+			var photoUrl = this.fixed_height;
+			
 			//jquery to remove div
 			var closeX = $(event.target);
 			var closeDiv = $(closeX.closest('div'));
-			closeDiv.remove();
-
-			console.log('delete..' + photoUrl);
+			closeDiv.remove(photoUrl);
 		
 			Meteor.call('deletePhoto', photoUrl, function(error, results){
 				console.log('photos method deleting...');
-			});
-			
+			});	
 		},
 	}); //instafeed events
-
+	
 	Template.notes.events({
-		'submit .new-note': function (event) {
+		'submit form': function() {
 			event.preventDefault();
 			var noteId = this._id;
-			var newInstagramNote = event.target.instagramNote.value;
-			console.log(newInstagramNote);
-			Meteor.call('addNote', newInstagramNote, noteId, function(error,results){
-				console.log('note added');
+		
+			var gifNote = event.target.gifNote.value
+			console.log(gifNote);
+			console.log(noteId );
+			Meteor.call('addNote', noteId, gifNote, function(error, results){
+				console.log('note: ' + gifNote + ' added to: ' + noteId);
 			});
-
 		}
-	});
+	})
 
 	Template.notes.helpers({
 		'loadMemory': function() {
-			return Photographs.find({}, {fields: {'memory':1} });
+			var noteId = this._id; 
+			return Photographs.find({_id: this._id}, {fields: {'memory':1} });
 		}
-
 	});
 
 //SUBSCRIPTIONS --subscribe to instafeed publication from server

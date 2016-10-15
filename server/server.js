@@ -13,22 +13,24 @@ if(Meteor.isServer){
 		console.log('publication ready');
 		// fields from Photographs Collection available for publication -'text' and 'url from instagram
 		//plus fields created before insert using collection-hooks package'
-		return Photographs.find({},{fields: {"data.caption.text":-1,"data.images.low_resolution.url":-1, 
-			'dateTagged':-1,'tag':-1, 'memory':-1, "data.user.username":-1, "data.user.profile_picture":-1}});
+		return Photographs.find({},{fields: {"data.caption":-1,"data.url":-1,"data.rating":-1,
+		 "data.source":-1,"data.images.fixed_height":-1,"data.username":-1,
+			'dateTagged':-1,'tag':-1, 'memory':-1,  }});
 	}); //end of publish
 
 
 //METHODS 
 	Meteor.methods({
-		//search instagram, using http-request package 
+		//search Giphy using http-request package 
 		//Use Session variable 'hashtagIdVar' for the 'tag' value in instagram
 		searchInstagram: function (hashtagIdVar) {
-			console.log('checking instagram...');
+			console.log('checking giphy...');
 
-			HTTP.call( 'GET', 'https://api.instagram.com/v1/tags/'+hashtagIdVar+'/media/recent?access_token=1634185146.1677ed0.d05110c153ab4f86b27f2e99d58a3f3c', {
+			HTTP.call( 'GET', 'http://api.giphy.com/v1/gifs/search?q='+hashtagIdVar+'&api_key=dc6zaTOxFJmzC', {
 				params: {
 					  	
-				  'count': 8, //return two instagram posts
+				  'limit': 4, //return gifs 
+				  'fmt': JSON, //return json in server for debugging
 				}
 			}, function( error, data ) {
 
@@ -36,16 +38,19 @@ if(Meteor.isServer){
 			    console.log( error );
 			  } 
 			  else {
-			  	//assign 'data' response and first'data' layer in instagram endpoint to 'photos'
+			  	//assign 'data' response and first'data' layer in giphy endpoint to 'photos'
 			  	//photos = data.data; 
 
 				//Insert all data into Photographs Collection. 
+				console.log(data.data);
+				console.log(hashtagIdVar);
 				
 				Photographs.before.insert(function (userId, doc) { 
 					doc.dateTagged = new Date();
 					doc.tag = hashtagIdVar;
 					doc.memory = '';
 				});
+
 				Photographs.insert(data.data);
 				
 			    //Photographs.insert({photos:data.data,tag:hashtagIdVar,dateTagged: new Date()});
@@ -66,10 +71,18 @@ if(Meteor.isServer){
 			//Photographs.remove({},{url:photoUrl});  //removes everything
 		},
 
-		addNote: function(newInstagramNote, noteId){
-			console.log(newInstagramNote);
+		addNote: function(noteId, gifNote){
+	
+			Photographs.update(
+				{ _id: noteId },
+				{$set:
+					{
+						memory: gifNote,
+					}
+				}
+			);
 			//db.photographs.update({"tag":"qoobear"},{$set:{"memory":"dubba"}})
-			Photographs.update(noteId,{$set:{memory:newInstagramNote}});		
+			//Photographs.update(noteId,{$set:{memory:gifNote}});		
 		} //addNote
 	}); //methods
 } //ifServer

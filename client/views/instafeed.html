@@ -33,39 +33,28 @@
 			<div class = "container">
 			<div class = "row">	
 			<div class = "instagramRow col-md-12">
-				
-					
 						<!-- LOAD ALL DATA FROM SUBSCRIPTION  -->
 						{{#each data }}
 			
 					<div class = "col-md-3 instagramDisplay" >
 							<a href="#" id ="close" name ="closePic"><span class = "glyphicon glyphicon-remove"></span> </a>
-
-							<div>
+						<div>
 							{{#with images}}
 								{{#with fixed_height}} 
 								<!-- data.images.fixed_height.url -->
 									<img src="{{url}}" class = "img-responsive" alt = 'so sorry gif is gone'>
 								{{/with}}
-
 							{{/with}}
-						</div>
-							
-							<!-- <div class = "userInfo col-md-3"> -->
-							<!-- data.username
-							data.rating -->
+						</div>		
 								<p>Gif By: {{username}}</p>
 								<p>Rating: {{ rating }}</p>
 								<p>Source: {{source}}</p>
-							<!-- </div> -->
-		
 					</div> <!--  instagramDisplay -->
 		
 						{{/each}}   <!--DATA LOOP END-->
 					
 					<!--  NOTES TEMPLATE -->	
 					{{>notes}}		
-
 			</div> <!-- instagramRow Div -->
 			</div> <!-- row -->
 			</div> <!-- container -->
@@ -74,6 +63,7 @@
 		</div> <!-- row -->
 	</div> <!-- container -->
 </div> <!-- instagramPhoto div -->
-
+{{else}}
+<h4>You must be logged-in to see this content</h4>
 {{/if}} <!-- current user div -->
 </template>

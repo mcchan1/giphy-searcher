@@ -29,7 +29,7 @@ if(Meteor.isServer){
 			HTTP.call( 'GET', 'http://api.giphy.com/v1/gifs/search?q='+hashtagIdVar+'&api_key=dc6zaTOxFJmzC', {
 				params: {
 					  	
-				  'limit': 4, //return gifs 
+				  'limit': 4, //return gifs ...
 				  'fmt': JSON, //return json in server for debugging
 				}
 			}, function( error, data ) {
@@ -83,6 +83,10 @@ if(Meteor.isServer){
 			);
 			//db.photographs.update({"tag":"qoobear"},{$set:{"memory":"dubba"}})
 			//Photographs.update(noteId,{$set:{memory:gifNote}});		
-		} //addNote
+		}, //addNote
+
+		shareAlbum: function(email) {
+			console.log('album shared with..' + email);
+		}
 	}); //methods
 } //ifServer

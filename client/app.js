@@ -22,7 +22,24 @@ Template.hashtag.events({
 		});
 		//return false; //prevent the form reload		
 	} //sumbit form	
-})
+});
+
+Template.hashtag.helpers({
+	'headline': function () {
+		//display value of hashtagId
+		return Session.get('hashtagId');
+	},
+});
+
+//SHARE TEMPLATE
+Template.share.events({
+	'click #share-album': function () {
+		const email = document.getElementById("sharedEmail").value;
+		console.log('share this: ' + email);
+		Meteor.call('shareAlbum', email)
+	}
+});
+
 //INSTAFEED TEMPLATE 
 	Template.instafeed.helpers({
 	
@@ -35,12 +52,8 @@ Template.hashtag.events({
 
 	}); //end of helpers
 
-	Template.hashtag.helpers({
-		'headline': function () {
-			//display value of hashtagId
-			return Session.get('hashtagId');
-		},
-	});
+
+
 
 	Template.instafeed.events({
 		'click .delete-hashtag': function (event) {
@@ -67,7 +80,8 @@ Template.hashtag.events({
 			});	
 		},
 	}); //instafeed events
-	
+
+//NOTES TEMPLATE	
 	Template.notes.events({
 		'submit form': function() {
 			event.preventDefault();

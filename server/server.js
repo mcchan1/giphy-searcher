@@ -16,8 +16,14 @@ if(Meteor.isServer){
 		//plus fields created before insert using collection-hooks package'
 		return Photographs.find({},{fields: {"data.caption":-1,"data.url":-1,"data.rating":-1,
 		 "data.source":-1,"data.images.fixed_height":-1,"data.username":-1,
-			'dateTagged':-1,'tag':-1, 'memory':-1,  }});
+			'dateTagged':-1,'tag':-1, 'memory':-1, }});
+
+
 	}); //end of publish
+
+	Meteor.publish('SharedEmails', function(){
+		return SharedEmails.find({}, {fields:{'sharedWith':-1 }});
+	});
 
 
 //METHODS 
@@ -89,6 +95,11 @@ if(Meteor.isServer){
 
 		shareAlbum: function(email) {
 			console.log('album shared with..' + email);
+			SharedEmails.insert(
+				
+					{sharedWith: email}
+				);
+
 			Accounts.createUser({
 				email:email,
 				password: 'password'

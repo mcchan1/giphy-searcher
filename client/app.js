@@ -40,6 +40,13 @@ Template.share.events({
 	}
 });
 
+Template.share.helpers({
+	'displayEmails': function() {
+		
+		return SharedEmails.find({}, {fields: {'sharedWith':1} });
+	},
+});
+
 //INSTAFEED TEMPLATE 
 	Template.instafeed.helpers({
 	
@@ -108,5 +115,7 @@ Template.share.events({
 		//count number of photographs in Publication 'instafeed'
 		console.log("photograph count:" + Photographs.find().count());
 	});	
+
+	Meteor.subscribe('SharedEmails');
 
 } //end of isClient

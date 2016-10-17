@@ -1,3 +1,4 @@
+
 if(Meteor.isServer){
 	//server is awake
 	console.log('server is awake');
@@ -49,6 +50,7 @@ if(Meteor.isServer){
 					doc.dateTagged = new Date();
 					doc.tag = hashtagIdVar;
 					doc.memory = '';
+					
 				});
 
 				Photographs.insert(data.data);
@@ -87,6 +89,11 @@ if(Meteor.isServer){
 
 		shareAlbum: function(email) {
 			console.log('album shared with..' + email);
+			Accounts.createUser({
+				email:email,
+				password: 'password'
+			});
+			
 		}
 	}); //methods
 } //ifServer

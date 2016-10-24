@@ -1,0 +1,2 @@
+# giphy-searcher Meteor
+Built with the Meteor, a full-stack Node.js based framework, and a MongoDB database. Giphy Album allows user to search the Giphy.com API by hashtag and save the results of multiple searches into a MongoDB database.  The user can also add and save notes to each hashtag collection searched.  The user can also share their 'album' of gifs with another user via their email address. Multiple authorized users can work on the album simultaneously.

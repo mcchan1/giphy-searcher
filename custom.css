@@ -4,13 +4,29 @@
 	
 }
 
-.searchContainer {
-	display: flex;
+.sharedWith li {
+	display: inline;
+	padding: .5em;
+
 }
+
+.sharedWith ul {
+	padding-left: inherit;
+	margin-top: 10px;
+}
+
+
+#search {
+	width: 39%
+}
+
+.search-form {}
 
 .login{
 	padding: 1em;
+	color: grey;
 }
+
 .instagramRow {
 	display: inline-block;
 	/*border-style: dashed;*/

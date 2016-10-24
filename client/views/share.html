@@ -1,10 +1,13 @@
 <template name = "share">
+  {{#if currentUser}}
 	<div class = 'container'>
 		<div class = 'row'>
-		<div class = "col-md-12 share-album" >
-		
-    <div class="input-group">
-          <input type="email" id="sharedEmail" class="form-control" placeholder = "enter email" />
+		<div class = "col-md-6 share-album" >
+		<label>SHARE THIS ALBUM</label>
+    <div class="input-group" id = "share-input">
+        
+          <input type="email" id="sharedEmail" class="form-control" placeholder = "Enter email to share album" />
+
           <div class="input-group-btn">
             <button
             	id = 'share-album'
@@ -12,17 +15,21 @@
               Share Album
             </button>
           </div>
-        </div>
+    </div>
         
-        <div class = "sharedWith">
-      {{#each displayEmails}}
-        
-          <p>Shared With: {{sharedWith}}</p>
-         
-        {{/each}}
-        </div>
+    <div class = "sharedWith">
+
+      <ul>
+            <li>Shared With: </li>
+          {{#each displayEmails}}
+            
+            <li>{{sharedWith}}, </li> 
+          {{/each}}
+      </ul>
+    </div>
 
 		</div>
 	 </div>
 	</div>
+  {{/if}} <!-- current user div -->
 </template>

@@ -4,10 +4,18 @@
  </head> 
 
   <body>
-    <div class = "login">
-      {{ >loginButtons}}
+    <div class = " container login">
+      <div class = "row">
+       <div class = "col-md-6">
 
+        <h4>LOGIN</h4>
+        <h5> {{ >loginButtons}} </h5>
+     </div>
+     <div class = "col-md-6">
+      {{ > share}}
+     </div>
     </div>
+  </div>
       
      
 
@@ -15,11 +23,14 @@
   		<div class = "row">
   			<div class = "col-md-12">
   				 <h1 style ='text-align:center'>GIPHY-<span class = "glyphicon glyphicon-heart" style="vertical-align:middle"></span>-ALBUM</h1>
+
   			</div>
+       
   		</div>
   	</div>
-    {{ > share}}
+    
     {{ > hashtag}}
+  <!--   {{ > share}} -->
     {{ > instafeed }}
 
   </body>
